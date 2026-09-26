@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cad-super-mcp"
+dynamic = ["version"]
+description = "A stability-first MCP gateway that combines the strongest AutoCAD 2026 capabilities from multiple MCP backends without merging their runtimes."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "QingXian"}]
+keywords = ["mcp", "autocad", "cad", "codex", "gateway"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: Microsoft :: Windows",
+  "Topic :: Scientific/Engineering",
+]
+dependencies = [
+  "mcp>=2.0,<3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+cad-super-mcp = "cad_super_mcp.server:main"
+cad-super-doctor = "cad_super_mcp.doctor:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "cad_super_mcp.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cad_super_mcp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E9", "F", "B", "UP"]
+ignore = ["B008", "UP007", "UP037"]

@@ -1,0 +1,10 @@
+# Replace ROOT and USER_NAME, or run scripts\print-codex-config.ps1 after installation.
+[mcp_servers.codex-CADmcp]
+command = 'C:\Tools\CAD-Super-MCP\.venv-gateway\Scripts\cad-super-mcp.exe'
+enabled = true
+startup_timeout_sec = 30
+tool_timeout_sec = 240
+default_tools_approval_mode = "writes"
+
+[mcp_servers.codex-CADmcp.env]
+CAD_SUPER_CONFIG = 'C:\Users\USER_NAME\.cad-super-mcp\config.json'

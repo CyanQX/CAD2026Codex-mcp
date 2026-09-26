@@ -1,0 +1,72 @@
+{
+  "workspace_root": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace",
+  "audit_log_path": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace\\.cad_super\\audit.jsonl",
+  "backends": {
+    "best": {
+      "enabled": true,
+      "kind": "stdio",
+      "command": "C:\\Tools\\CAD-Super-MCP\\.venv-best\\Scripts\\cad-mcp.exe",
+      "args": [],
+      "cwd": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace",
+      "env": {
+        "CAD_MCP_TOOL_PROFILE": "core",
+        "CAD_MCP_WORKSPACE_ROOT": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace"
+      },
+      "timeout_seconds": 180,
+      "session_mode": "auto",
+      "protocol": "auto"
+    },
+    "slacker": {
+      "enabled": true,
+      "kind": "stdio",
+      "command": "C:\\Tools\\CAD-Super-MCP\\.venv-slacker\\Scripts\\autocad-mcp.exe",
+      "args": [],
+      "cwd": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace",
+      "env": {
+        "ACAD_MCP_OUTPUT_ROOT": "C:\\Users\\YOUR_NAME\\Documents\\CAD-Super-Workspace\\output"
+      },
+      "timeout_seconds": 90,
+      "session_mode": "auto",
+      "protocol": "legacy"
+    },
+    "official": {
+      "enabled": true,
+      "kind": "autodiscover_http",
+      "timeout_seconds": 30,
+      "port_range": [5001, 5050]
+    },
+    "felix": {
+      "enabled": false,
+      "kind": "http",
+      "url": "http://localhost:7410/",
+      "timeout_seconds": 90
+    },
+    "product_help": {
+      "enabled": true,
+      "kind": "http",
+      "url": "https://developer.api.autodesk.com/knowledge/public/v1/mcp",
+      "timeout_seconds": 60
+    }
+  },
+  "safety": {
+    "enable_raw_felix": false,
+    "require_confirm_for_destructive": true,
+    "require_confirm_for_save": true,
+    "require_confirm_for_plan_execute": true,
+    "audit_log": true,
+    "audit_max_bytes": 5000000,
+    "audit_backups": 3,
+    "raw_extra_commands": [],
+    "allowed_open_roots": []
+  },
+  "runtime": {
+    "cross_process_lock": true,
+    "lock_timeout_seconds": 180,
+    "max_response_chars": 60000,
+    "verify_writes": true,
+    "verify_tolerance_mm": 0.01,
+    "stage_layer": "_AI_STAGE",
+    "stage_color_aci": 6,
+    "max_batch_operations": 200
+  }
+}

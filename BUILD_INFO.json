@@ -1,0 +1,20 @@
+{
+  "package": "CAD-Super-MCP",
+  "version": "0.2.0",
+  "build_date": "2026-09-26",
+  "target": "Windows 10/11 + full AutoCAD 2026 + Codex MCP host",
+  "codex_registration_name": "codex-CADmcp",
+  "gateway_mcp_sdk": ">=2.0,<3.0",
+  "best_cad_mcp": "1.7.0",
+  "slacker_source": "https://github.com/Slacker-LLC/autocad-mcp (main by default, -SlackerRef pins it; gated by doctor tool + parameter contract check)",
+  "felix_source": "https://github.com/felixalmesberger/AUTOCAD-MCP (optional build via -WithFelix; raw disabled by default)",
+  "autodesk_official": "AutoCAD/Civil 3D MCP Tech Preview + Product Help MCP",
+  "verified_with": {
+    "os": "Windows 11",
+    "python": "3.12",
+    "mcp_sdk": "2.2.0 (gateway, best-cad-mcp) / 1.30.0 (Slacker)",
+    "best_cad_mcp_tools_core_profile": 210,
+    "slacker_tools": 29
+  },
+  "validation_note": "Automated tests (unit, real-MCP-subprocess session tests, protocol-level end-to-end with a fake AutoCAD), ruff, contract check of allow-lists and sent parameters against the real best-cad-mcp/Slacker schemas, and a smoke run against the real backend processes with AutoCAD NOT running. Live AutoCAD COM/DWG verification (read-back verification per entity type, staging, text rotation/alignment via best) must be run on the user's Windows AutoCAD 2026 installation via DOCTOR.cmd and the Smoke Test in README.md."
+}
