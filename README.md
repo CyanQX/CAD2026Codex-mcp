@@ -1,23 +1,8 @@
 # CAD2026Codex-mcp — a stability-first MCP gateway for AutoCAD 2026
 
-> Stability-first MCP gateway: lets **Codex** (or any MCP host) drive a **local, writable AutoCAD 2026** through a small set of curated, policy-guarded, *precision-first* tools.
-
 `Windows 10/11 x64` · `AutoCAD 2026 (full version)` · `Python 3.11 / 3.12` · `MCP Gateway` · `MIT License`
 
-This repository publishes the **CAD Super MCP** gateway so that users can plug a local, writable AutoCAD 2026 straight into **Codex**. Codex registration name: `codex-CADmcp`.
-
-This is an **MCP gateway**, not several open-source projects crudely merged into one process. The goal is to keep the strongest, most stable capability of each backend while isolating dependencies, reducing tool conflicts and keeping high-risk operations under control — so the model **draws accurately and collaborates like a human**.
-
-## What this release (0.2) brings
-
-| | How | What you actually feel |
-|---|---|---|
-| **More accurate** | Lengths unified as millimetres (accepts `"3.6m"`, `"12in"`); point specs mean the model never does coordinate arithmetic; the gateway computes rectangles, wall outlines and dimension-line positions locally; writes are **read back and verified** | The model says "900 from the wall" and it *is* 900, with a `verified` receipt |
-| **More human** | `cad_context` sizes up the scene in one call; draw onto the staging layer and show me a picture before committing; `cad_undo` takes things back precisely; entity aliases; ambiguity gets a question instead of a guess; drawing pinning | It feels like talking to a drafter, not calling an API |
-| **Faster** | Persistent backend sessions (measured: ~0.7 s per call → single-digit milliseconds); `cad_batch` runs many steps in one go; `cad_health` returns within a second | Drawing a room no longer takes half a minute |
-| **More robust** | Transaction protection enforced at a single choke point; raw channel allow-listed; backend "soft failures" reported as failures; no dangling audit rows; cross-process mutual exclusion between hosts | When something fails you know **where and why** |
-
-> Measured on the author's machine with AutoCAD not running (process/handshake/protocol overhead only, no real COM work): single call p50 0.74 s → 3 ms; `cad_health` cold start 8.4 s → 1.0 s, warm call 5.6 s → 15 ms; discovery when the official MCP is absent 59.5 s → under 1 s. See [Known limitations and what still needs a real-machine pass](#known-limitations-and-what-still-needs-a-real-machine-pass).
+Drive a local, writable AutoCAD 2026 from Codex (or any MCP host). Codex registration name: `codex-CADmcp`.
 
 ## Table of contents
 
@@ -56,7 +41,7 @@ Target environment: Windows 10/11 + AutoCAD 2026 (full version) + Python 3.11/3.
 7. Double-click `REGISTER-CODEX.cmd`: it first backs up your existing `%USERPROFILE%\.codex\config.toml`, then appends `codex-CADmcp`.
 8. Fully quit and reopen Codex, type `/mcp`, and confirm `codex-CADmcp` is connected.
 9. The first run should be the [Smoke test](#smoke-test) on the test DWG only.
-10. Drop the [working rules for Codex](#working-rules-for-codex-agentsmd-template) into your project's `AGENTS.md` and Codex behaves much more like a meticulous drafter.
+10. Put the [working rules for Codex](#working-rules-for-codex-agentsmd-template) into your project's `AGENTS.md`.
 
 > **Important**
 >
@@ -342,8 +327,6 @@ Additional options: `--json` (also print the full JSON report), `--tools` (inclu
 ---
 
 ## Connect Codex
-
-This is currently the smoothest entrance for a local, writable AutoCAD.
 
 Easiest: double-click in the repository root:
 
@@ -758,7 +741,7 @@ Finally, the save boundary:
 
 ## ChatGPT desktop and the HTTP mode
 
-If you are on an individual Plus plan with the ChatGPT desktop app: **do not treat "the ChatGPT desktop app itself" as a local writable MCP host.** The full writable MCP beta in ChatGPT currently targets Business / Enterprise / Edu, and custom MCP connections point at remote endpoints; local MCP requires a Secure MCP Tunnel. For direct execution on a local AutoCAD 2026 today, the smoothest entrance is still **Codex → CAD Super MCP → AutoCAD**.
+If you are on an individual Plus plan with the ChatGPT desktop app: **do not treat "the ChatGPT desktop app itself" as a local writable MCP host.** The full writable MCP beta in ChatGPT currently targets Business / Enterprise / Edu, and custom MCP connections point at remote endpoints; local MCP requires a Secure MCP Tunnel. For direct execution on a local AutoCAD 2026 today, use **Codex → CAD Super MCP → AutoCAD**.
 
 This gateway also speaks local Streamable HTTP:
 
