@@ -1,4 +1,4 @@
-# Codex-mcp — a stability-first MCP gateway for AutoCAD 2026
+# CAD2026Codex-mcp — a stability-first MCP gateway for AutoCAD 2026
 
 > Stability-first MCP gateway: lets **Codex** (or any MCP host) drive a **local, writable AutoCAD 2026** through a small set of curated, policy-guarded, *precision-first* tools.
 
